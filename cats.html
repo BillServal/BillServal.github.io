@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สายพันธุ์แมวทั้งหมด</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <h1>สายพันธุ์แมวทั้งหมด</h1>
+        <div class="header-search">
+            <input type="text" placeholder="ค้นหาแมว..." class="search-input">
+            <i class="fa fa-search search-icon"></i>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside class="filter-section">
+            <div class="filter-header">
+                <h2><i class="fa fa-filter"></i> ตัวกรอง</h2>
+                <span class="clear-filters" onclick="clearFilters()">ล้างทั้งหมด</span>
+            </div>
+
+            <div class="filter-group">
+                <h3><i class="fa fa-wallet"></i> ค่าตัวแมว (บาท)</h3>
+                <div class="price-range-display">
+                    <input type="number" id="minPrice" min="0" max="100000" value="0">
+                    <span>-</span>
+                    <input type="number" id="maxPrice" min="0" max="100000" value="100000">
+                </div>
+                <div class="slider-container">
+                    <div class="slider-track" id="price-slider-track"></div>
+                    <input type="range" class="slider" id="min-price-slider" min="0" max="100000" value="0">
+                    <input type="range" class="slider" id="max-price-slider" min="0" max="100000" value="100000">
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h3><i class="fa fa-clock"></i> เวลาที่มีให้แมว</h3>
+                <select class="filter-select" id="time-select">
+                    <option value="all">ทั้งหมด</option>
+                    <option value="low">น้อย (1-4 ชม.)</option>
+                    <option value="medium">กลาง (4-8 ชม.)</option>
+                    <option value="high">มาก (8+ ชม.)</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <h3><i class="fa fa-bolt"></i> ความซนของแมว</h3>
+                <select class="filter-select" id="mischievousness-select">
+                    <option value="all">ทั้งหมด</option>
+                    <option value="low">รักสงบ</option>
+                    <option value="medium">ปานกลาง</option>
+                    <option value="high">ซนมาก</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <h3><i class="fa fa-user-times"></i> แพ้ขน</h3>
+                <select class="filter-select" id="fur-allergy-select">
+                    <option value="all">ทั้งหมด</option>
+                    <option value="yes">เหมาะสำหรับคนแพ้ขน</option>
+                    <option value="no">ไม่เหมาะสำหรับคนแพ้ขน</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <h3><i class="fa fa-volume-up"></i> อัตราการร้อง</h3>
+                <select class="filter-select" id="meow-rate-select">
+                    <option value="all">ทั้งหมด</option>
+                    <option value="low">ร้องไม่บ่อย</option>
+                    <option value="medium">ร้องปานกลาง</option>
+                    <option value="high">ร้องบ่อย</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <h3><i class="fa fa-graduation-cap"></i> ประสบการณ์การเลี้ยง</h3>
+                <select class="filter-select" id="experience-select">
+                    <option value="all">ทั้งหมด</option>
+                    <option value="beginner">มือใหม่</option>
+                    <option value="experienced">มีประสบการณ์</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <h3><i class="fa fa-thermometer-half"></i> อุณหภูมิภายในที่เลี้ยง</h3>
+                <select class="filter-select" id="temp-select">
+                    <option value="all">ทั้งหมด</option>
+                    <option value="cool">เย็น</option>
+                    <option value="warm">อบอุ่น</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <h3><i class="fa fa-home"></i> พื้นที่เลี้ยง</h3>
+                <label><input type="checkbox" name="space" value="small"> คอนโด/อพาร์ตเมนต์</label>
+                <label><input type="checkbox" name="space" value="medium"> ทาวน์เฮาส์</label>
+                <label><input type="checkbox" name="space" value="large"> บ้านเดี่ยวมีพื้นที่</label>
+            </div>
+
+            <div class="filter-group">
+                <h3><i class="fa fa-comment-dots"></i> ชอบให้แมวเข้าหาหรือชอบเข้าหาแมว</h3>
+                <label><input type="checkbox" name="interaction" value="seeking"> ชอบให้แมวเข้าหา</label>
+                <label><input type="checkbox" name="interaction" value="initiating"> ชอบเข้าหาแมว</label>
+            </div>
+            
+            <div class="filter-group">
+                <h3><i class="fa fa-paw"></i> ระดับการดูแล</h3>
+                <label><input type="checkbox" name="care" value="easy"> ดูแลน้อย</label>
+                <label><input type="checkbox" name="care" value="medium"> ดูแลปานกลาง</label>
+                <label><input type="checkbox" name="care" value="hard"> ดูแลมาก</label>
+            </div>
+        </aside>
+
+        <section class="cat-cards-container">
+            </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
